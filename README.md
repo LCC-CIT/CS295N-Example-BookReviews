@@ -1,1 +1,1 @@
-# CS295N Example Web App
+# CS295N-Fall2020Labs
