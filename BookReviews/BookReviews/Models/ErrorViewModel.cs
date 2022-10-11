@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 
 namespace BookReviews.Models
 {
@@ -9,3 +9,4 @@ namespace BookReviews.Models
         public bool ShowRequestId => !string.IsNullOrEmpty(RequestId);
     }
 }
+

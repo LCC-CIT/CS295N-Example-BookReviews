@@ -23,11 +23,6 @@ namespace BookReviews.Controllers
             return View();
         }
 
-        public IActionResult Recommended()
-        {
-            return View();
-        }
-
         public IActionResult Privacy()
         {
             return View();
@@ -40,3 +35,4 @@ namespace BookReviews.Controllers
         }
     }
 }
+
