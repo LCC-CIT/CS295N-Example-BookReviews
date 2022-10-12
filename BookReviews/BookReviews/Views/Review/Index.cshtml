@@ -1,4 +1,5 @@
-﻿@{
+﻿@model Review
+@{
     ViewData["Title"] = "Reviews";
 }
 
@@ -7,6 +8,12 @@
     <p>
         All the reviews users have posted.<br />
         ... coming soon.
+    </p>
+    <p>
+        <h2>The Last Review Posted</h2>
+        Book Title: @Model.Book.BookTitle
+        Author: @Model.Book.AuthorName <br />
+        Review: @Model.ReviewText
     </p>
     <a href="/Review/Review">Add a Review</a><br />
     <a href="/Home">Home</a>
