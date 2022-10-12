@@ -9,12 +9,17 @@
         All the reviews users have posted.<br />
         ... coming soon.
     </p>
-    <p>
-        <h2>The Last Review Posted</h2>
-        Book Title: @Model.Book.BookTitle
-        Author: @Model.Book.AuthorName <br />
-        Review: @Model.ReviewText
-    </p>
+    @if(@Model.ReviewText != null)
+    {
+        <p>
+            <h2>The Last Review Posted</h2>
+            Book Title: @Model.Book.BookTitle<br />
+            Author: @Model.Book.AuthorName <br />
+            Review: @Model.ReviewText<br />
+            Reviewer: @Model.Reviewer.UserName<br />
+            Review date: @Model.ReviewDate.ToShortDateString()
+        </p>
+    }
     <a href="/Review/Review">Add a Review</a><br />
     <a href="/Home">Home</a>
 </div>
