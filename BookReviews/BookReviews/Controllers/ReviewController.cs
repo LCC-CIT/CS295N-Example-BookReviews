@@ -26,7 +26,6 @@ namespace BookReviews.Controllers
             return View(review);
         }
 
-        // change the index view to show a review.
 
         public IActionResult Review()
         {
@@ -36,7 +35,6 @@ namespace BookReviews.Controllers
         [HttpPost]
         public IActionResult Review(Review model)
         {
-
             return RedirectToAction("Index",
                 new
                 {
