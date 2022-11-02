@@ -1,8 +1,8 @@
 # CS295N Book Review Example
-This is the example code for CS295N
+This is the example code for CS295N, Web Development 1: ASP.NET
 
-## Lab 1 branch
-Named 1-EmptySite
+## Branches
 
-## Lab 2 branch
-Named 2-SkeletalSite
+- 1-EmptySite  
+  Just an empty ASP.NET Core site created from the Visual Studio project template. The home view has been customized.
+- 2-
