@@ -8,7 +8,4 @@
     <None Remove="Microsoft.VisualStudio.Web.CodeGeneration.Design" />
     <None Remove="Views\Book\" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Views\Book\" />
-  </ItemGroup>
 </Project>

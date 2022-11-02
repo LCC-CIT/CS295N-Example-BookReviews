@@ -1,3 +1,4 @@
+using BookReviews.Models;
 using Microsoft.AspNetCore.Mvc;
 
 namespace BookReviews.Controllers
@@ -7,6 +8,17 @@ namespace BookReviews.Controllers
         public IActionResult Index()
         {
             return View();
+        }
+
+        public IActionResult Quiz()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        public IActionResult Quiz(QuizVM model)
+        {
+            return View(model);
         }
     }
 }
