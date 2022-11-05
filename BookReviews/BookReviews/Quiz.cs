@@ -13,11 +13,9 @@ namespace BookReviews
         public static List<QuestionVM> GenerateQuestionSet()
         {
             var set = new List<QuestionVM>();
-            int id = 0;
 
             set.Add(new QuestionVM
             {
-                QuestionId = id++,   // the first id will be 1
                 Type = QuestionType.ShortAnswer,
                 Question = "Who wrote Les Misarable?",
                 Answer = "Victor Hugo"
@@ -25,7 +23,6 @@ namespace BookReviews
 
             set.Add(new QuestionVM
             {
-                QuestionId = id++,
                 Type = QuestionType.Numeric,
                 Question = "What year was Charles Dickens born?",
                 Answer = "1812"
@@ -33,7 +30,6 @@ namespace BookReviews
 
             set.Add(new QuestionVM
             {
-                QuestionId = id++,
                 Type = QuestionType.TrueFalse,
                 Question = "The term Orwellian is a reference to the author Orson Wells.",
                 Answer = FALSE
@@ -41,7 +37,6 @@ namespace BookReviews
 
             set.Add(new QuestionVM
             {
-                QuestionId = id++,
                 Type = QuestionType.Numeric,
                 Question = "How many volumes make up The Lord of the Rings by J.R.R. Tolkien?",
                 Answer = "3"
@@ -49,7 +44,6 @@ namespace BookReviews
 
             set.Add(new QuestionVM
             {
-                QuestionId = id++,
                 Type = QuestionType.TrueFalse,
                 Question = "War and Peace, by Leo Tolstoy, is over 1300 pages long.",
                 Answer = TRUE
@@ -57,7 +51,6 @@ namespace BookReviews
 
             set.Add(new QuestionVM
             {
-                QuestionId = id++,
                 Type = QuestionType.ShortAnswer,
                 Question = "Hamlet, the play by William Shakespere, is set in what country?",
                 Answer = "Denmark"
@@ -65,7 +58,6 @@ namespace BookReviews
 
             set.Add(new QuestionVM
             {
-                QuestionId = id++,
                 Type = QuestionType.ShortAnswer,
                 Question = "Who is the headmaster of Hogwarts in the Harry Potter series",
                 Answer = "Albus Dumbledore"
@@ -73,7 +65,6 @@ namespace BookReviews
 
             set.Add(new QuestionVM
             {
-                QuestionId = id++,
                 Type = QuestionType.ShortAnswer,
                 Question = "The main character of Great Expectations, by Charles Dickens is",
                 Answer = "Pip"
@@ -81,7 +72,6 @@ namespace BookReviews
 
             set.Add(new QuestionVM
             {
-                QuestionId = id++,
                 Type = QuestionType.TrueFalse,
                 Question = "Katniss Everdeen is the main character of Twighlight",
                 Answer = FALSE
@@ -89,7 +79,6 @@ namespace BookReviews
 
             set.Add(new QuestionVM
             {
-                QuestionId = id++,
                 Type = QuestionType.TrueFalse,
                 Question = "The first book of the Bible is Genesis",
                 Answer = TRUE

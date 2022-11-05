@@ -1,5 +1,4 @@
 ﻿using BookReviews;
-using System.Collections.Generic;
 using Xunit;
 
 namespace BookReviewTests
@@ -52,25 +51,6 @@ namespace BookReviewTests
                 result = result || (answer.IsRight ?? false);  // count null as false
             }
             Assert.False(result);
-        }
-
-        [Fact]
-        public void UniqueIdTest()
-        {
-            // arrange: not needed
-
-            // act
-            var set = Quiz.GenerateQuestionSet();
-
-            // assert
-            // Make a list of all the QuestionId values
-            var questionIds = new List<int>();   
-            foreach (var answer in set)
-            {
-                questionIds.Add(answer.QuestionId);
-            }
-            // Check to make sure there are no duplicates
-            Assert.Distinct(questionIds);
         }
     }
 }
