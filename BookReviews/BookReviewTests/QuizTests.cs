@@ -1,60 +1,76 @@
 ﻿using BookReviews;
+using System.Collections.Generic;
 using Xunit;
 
 namespace BookReviewTests
 {
     public class QuizTests
     {
-        // For use by all tests:
-        const string WRONG_ANSWER = "wrong answer";
-        const string RIGHT_ANSWER1 = "Victor Hugo";
-        const string RIGHT_ANSWER2 = "1812";
-        const string RIGHT_ANSWER3 = "false";
+        [Fact]
+        public void CheckAnswerRightTest()
+        {
+            // arrange: 
+            var set = Quiz.GenerateQuestionSet();
+            // set all the answers to the right answer
+            foreach(var answer in set)
+            {
+                answer.UserAnswer = answer.Answer;
+            }
+
+            // act
+            Quiz.CheckAnswers(set);
+
+            // assert
+            bool result = true;  // assume all the answers were right
+            // change result if ANY answer is wrong
+            foreach(var answer in set)
+            {   
+                result = result && (answer.IsRight ?? false);  // count null as false
+            }
+            Assert.True(result);
+        }
 
         [Fact]
         public void CheckAnswerWrongTest()
         {
-            // arrange: done at class scope
+            // arrange: 
+            var set = Quiz.GenerateQuestionSet();
+            // set all the answers to the wrong answer
+            foreach (var answer in set)
+            {
+                answer.UserAnswer = "Something random";
+            }
 
             // act
-           string result1 = Quiz.CheckAnswer(1, WRONG_ANSWER);
-           string result2 = Quiz.CheckAnswer(2, WRONG_ANSWER);
-           string result3 = Quiz.CheckAnswer(3, WRONG_ANSWER);
+            Quiz.CheckAnswers(set);
 
             // assert
-            Assert.True(result1.Equals(Quiz.WRONG));
-            Assert.True(result2.Equals(Quiz.WRONG));
-            Assert.True(result3.Equals(Quiz.WRONG));
+            bool result = false;  // assume all the answers were wrong
+            // change result if ANY answer is right
+            foreach (var answer in set)
+            {
+                result = result || (answer.IsRight ?? false);  // count null as false
+            }
+            Assert.False(result);
         }
 
         [Fact]
-        public void CheckAnswerRightTest()
+        public void UniqueIdTest()
         {
-            // arrange: done at class scope
+            // arrange: not needed
 
             // act
-            string result1 = Quiz.CheckAnswer(1, RIGHT_ANSWER1);
-            string result2 = Quiz.CheckAnswer(2, RIGHT_ANSWER2);
-            string result3 = Quiz.CheckAnswer(3, RIGHT_ANSWER3);
+            var set = Quiz.GenerateQuestionSet();
 
             // assert
-            Assert.True(result1.Equals(Quiz.RIGHT));
-            Assert.True(result2.Equals(Quiz.RIGHT));
-            Assert.True(result3.Equals(Quiz.RIGHT));
-        }
-
-        [Fact]
-        public void CheckAnswerNotAQuestionTest()
-        {
-            // arrange: done at class scope
-
-            // act
-            string result1 = Quiz.CheckAnswer(0, RIGHT_ANSWER1);
-            string result2 = Quiz.CheckAnswer(4, RIGHT_ANSWER2);
-
-            // assert
-            Assert.True(result1.Equals(Quiz.NAQ));
-            Assert.True(result2.Equals(Quiz.NAQ));
+            // Make a list of all the QuestionId values
+            var questionIds = new List<int>();   
+            foreach (var answer in set)
+            {
+                questionIds.Add(answer.QuestionId);
+            }
+            // Check to make sure there are no duplicates
+            Assert.Distinct(questionIds);
         }
     }
 }
