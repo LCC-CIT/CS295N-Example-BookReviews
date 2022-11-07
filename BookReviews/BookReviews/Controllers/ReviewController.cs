@@ -1,19 +1,22 @@
 ﻿using BookReviews.Models;
 using Microsoft.AspNetCore.Mvc;
 using System;
-using System.Reflection;
+using System.Linq;
 
 namespace BookReviews.Controllers
 {
     public class ReviewController : Controller
     {
-        public IActionResult Index(string bookTitle, 
-                                    string reviewText,
-                                    string authorName,
-                                    string reviewerName,
-                                    DateTime date) 
+        ApplicationDbContext context;
+        public ReviewController(ApplicationDbContext c)
+        {
+            context = c;
+        }
+
+        public IActionResult Index(string reviewId) 
         {
             Review review = new Review();
+            /*
             review.ReviewDate = date;
             review.ReviewText = reviewText;
             AppUser reviewer = new AppUser();
@@ -23,6 +26,8 @@ namespace BookReviews.Controllers
             book.AuthorName = authorName;
             review.Book = book;
             review.Reviewer = reviewer;
+            */
+            review = context.Reviews.First();
             return View(review);
         }
 
@@ -35,6 +40,11 @@ namespace BookReviews.Controllers
         [HttpPost]
         public IActionResult Review(Review model)
         {
+            model.ReviewDate = DateTime.Now;
+            context.Reviews.Add(model);
+            context.SaveChanges(); 
+
+            /*
             return RedirectToAction("Index",
                 new
                 {
@@ -45,6 +55,8 @@ namespace BookReviews.Controllers
                     date = DateTime.Now
                 }
             );
+            */
+            return RedirectToAction("Index",new {reviewId = model.ReviewId});
         }
     }
 }
