@@ -1,6 +1,7 @@
 ﻿using BookReviews.Models;
 using Microsoft.AspNetCore.Mvc;
 using System;
+using System.Collections.Generic;
 using System.Linq;
 
 namespace BookReviews.Controllers
@@ -27,7 +28,9 @@ namespace BookReviews.Controllers
             review.Book = book;
             review.Reviewer = reviewer;
             */
-            review = context.Reviews.First();
+            // review = context.Reviews.First();
+            review = context.Reviews.Find(reviewId);
+           //  List<Review> reviews = context.Reviews.ToList();
             return View(review);
         }
 
