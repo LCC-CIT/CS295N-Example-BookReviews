@@ -21,7 +21,7 @@ namespace BookReviews.Controllers
         public IActionResult Quiz(List<QuestionVM> answers)
         {
             // Only the user answers get sent from the input form.
-            // We need to add the questions and right answers again.
+            // We need to put the questions and answers together again.
             var questions = BookReviews.Quiz.GenerateQuestionSet();
             for (int i = 0; i < questions.Count; i++)
             {

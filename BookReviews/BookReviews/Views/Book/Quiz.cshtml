@@ -6,7 +6,7 @@
 <div>
     <h1 class="display-4">Author Quiz</h1>
     <form method="post" class="container">
-        
+        @* A for loop and index are necessary to generate an array in the HTTP response sent by the form*@
         @for (int i = 0; i < Model.Count; i++)
         {
             switch (Model[i].Type)
