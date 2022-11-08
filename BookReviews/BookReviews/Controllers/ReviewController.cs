@@ -1,5 +1,6 @@
 ﻿using BookReviews.Models;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -14,23 +15,16 @@ namespace BookReviews.Controllers
             context = c;
         }
 
-        public IActionResult Index(string reviewId) 
+        // Can be called with or without a reviewId on the incoming http request
+        public IActionResult Index(int reviewId) 
         {
-            Review review = new Review();
-            /*
-            review.ReviewDate = date;
-            review.ReviewText = reviewText;
-            AppUser reviewer = new AppUser();
-            reviewer.UserName = reviewerName;
-            Book book = new Book();
-            book.BookTitle = bookTitle;
-            book.AuthorName = authorName;
-            review.Book = book;
-            review.Reviewer = reviewer;
-            */
-            // review = context.Reviews.First();
-            review = context.Reviews.Find(reviewId);
-           //  List<Review> reviews = context.Reviews.ToList();
+            // If the http request doesn't have a reviewId, then reviewId = 0.
+            var review = context.Reviews
+                .Include(review => review.Reviewer) // returns Reivew.AppUser object
+                .Include(review => review.Book) // returns Review.Book object
+                .Where(review => review.ReviewId == reviewId)
+                .SingleOrDefault();  // default is null
+            // If no review is found, a null is sent to the view.
             return View(review);
         }
 
@@ -46,19 +40,6 @@ namespace BookReviews.Controllers
             model.ReviewDate = DateTime.Now;
             context.Reviews.Add(model);
             context.SaveChanges(); 
-
-            /*
-            return RedirectToAction("Index",
-                new
-                {
-                    bookTitle = model.Book.BookTitle,
-                    reviewText = model.ReviewText,
-                    authorName = model.Book.AuthorName,
-                    reviewerName = model.Reviewer.UserName,
-                    date = DateTime.Now
-                }
-            );
-            */
             return RedirectToAction("Index",new {reviewId = model.ReviewId});
         }
     }
