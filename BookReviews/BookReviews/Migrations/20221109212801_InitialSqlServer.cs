@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace BookReviews.Migrations
 {
-    public partial class Initial : Migration
+    public partial class InitialSqlServer : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -12,7 +12,7 @@ namespace BookReviews.Migrations
                 columns: table => new
                 {
                     AppUserId = table.Column<int>(nullable: false)
-                        .Annotation("Sqlite:Autoincrement", true),
+                        .Annotation("SqlServer:Identity", "1, 1"),
                     UserName = table.Column<string>(nullable: true),
                     SignUpDate = table.Column<DateTime>(nullable: false)
                 },
@@ -26,7 +26,7 @@ namespace BookReviews.Migrations
                 columns: table => new
                 {
                     BookId = table.Column<int>(nullable: false)
-                        .Annotation("Sqlite:Autoincrement", true),
+                        .Annotation("SqlServer:Identity", "1, 1"),
                     BookTitle = table.Column<string>(nullable: true),
                     AuthorName = table.Column<string>(nullable: true),
                     Isbn = table.Column<int>(nullable: false),
@@ -43,7 +43,7 @@ namespace BookReviews.Migrations
                 columns: table => new
                 {
                     ReviewId = table.Column<int>(nullable: false)
-                        .Annotation("Sqlite:Autoincrement", true),
+                        .Annotation("SqlServer:Identity", "1, 1"),
                     BookId = table.Column<int>(nullable: true),
                     ReviewerAppUserId = table.Column<int>(nullable: true),
                     ReviewText = table.Column<string>(nullable: true),
