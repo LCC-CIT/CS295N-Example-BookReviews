@@ -4,11 +4,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace BookReviews.Migrations
 {
-<<<<<<< HEAD:BookReviews/BookReviews/Migrations/20221110015604_MySqlInitial.cs
     public partial class MySqlInitial : Migration
-=======
-    public partial class InitialSqlServer : Migration
->>>>>>> 00585bbc52995d7262b6d190da5c90bbb7419666:BookReviews/BookReviews/Migrations/20221109212801_InitialSqlServer.cs
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -17,11 +13,7 @@ namespace BookReviews.Migrations
                 columns: table => new
                 {
                     AppUserId = table.Column<int>(nullable: false)
-<<<<<<< HEAD:BookReviews/BookReviews/Migrations/20221110015604_MySqlInitial.cs
                         .Annotation("MySql:ValueGenerationStrategy", MySqlValueGenerationStrategy.IdentityColumn),
-=======
-                        .Annotation("SqlServer:Identity", "1, 1"),
->>>>>>> 00585bbc52995d7262b6d190da5c90bbb7419666:BookReviews/BookReviews/Migrations/20221109212801_InitialSqlServer.cs
                     UserName = table.Column<string>(nullable: true),
                     SignUpDate = table.Column<DateTime>(nullable: false)
                 },
@@ -35,11 +27,7 @@ namespace BookReviews.Migrations
                 columns: table => new
                 {
                     BookId = table.Column<int>(nullable: false)
-<<<<<<< HEAD:BookReviews/BookReviews/Migrations/20221110015604_MySqlInitial.cs
                         .Annotation("MySql:ValueGenerationStrategy", MySqlValueGenerationStrategy.IdentityColumn),
-=======
-                        .Annotation("SqlServer:Identity", "1, 1"),
->>>>>>> 00585bbc52995d7262b6d190da5c90bbb7419666:BookReviews/BookReviews/Migrations/20221109212801_InitialSqlServer.cs
                     BookTitle = table.Column<string>(nullable: true),
                     AuthorName = table.Column<string>(nullable: true),
                     Isbn = table.Column<int>(nullable: false),
@@ -56,11 +44,7 @@ namespace BookReviews.Migrations
                 columns: table => new
                 {
                     ReviewId = table.Column<int>(nullable: false)
-<<<<<<< HEAD:BookReviews/BookReviews/Migrations/20221110015604_MySqlInitial.cs
                         .Annotation("MySql:ValueGenerationStrategy", MySqlValueGenerationStrategy.IdentityColumn),
-=======
-                        .Annotation("SqlServer:Identity", "1, 1"),
->>>>>>> 00585bbc52995d7262b6d190da5c90bbb7419666:BookReviews/BookReviews/Migrations/20221109212801_InitialSqlServer.cs
                     BookId = table.Column<int>(nullable: true),
                     ReviewerAppUserId = table.Column<int>(nullable: true),
                     ReviewText = table.Column<string>(nullable: true),
