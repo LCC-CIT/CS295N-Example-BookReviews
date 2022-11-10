@@ -10,6 +10,7 @@
     <None Remove="Microsoft.EntityFrameworkCore.Sqlite.Core" />
     <None Remove="Migrations\" />
     <None Remove="Microsoft.EntityFrameworkCore.Sqlite" />
+    <None Remove="Pomelo.EntityFrameworkCore.MySql" />
   </ItemGroup>
 
   <ItemGroup>
@@ -20,6 +21,7 @@
     </PackageReference>
     <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="3.1.30" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.Sqlite" Version="3.1.30" />
+    <PackageReference Include="Pomelo.EntityFrameworkCore.MySql" Version="3.2.7" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Migrations\" />
