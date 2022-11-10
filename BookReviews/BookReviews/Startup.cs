@@ -23,13 +23,13 @@ namespace BookReviews
             services.AddControllersWithViews();
             if (RuntimeInformation.IsOSPlatform(OSPlatform.Windows))
             {
-                // Assuming that SQL Server LocalDb is installed on Windows
+                // Assuming that SQL Server is installed on Windows
                 services.AddDbContext<ApplicationDbContext>(options =>
                    options.UseSqlServer(Configuration["ConnectionStrings:SQLServerConnection"]));
             }
             else if (RuntimeInformation.IsOSPlatform(OSPlatform.OSX))
             {
-                // Assuming MySQL is installed on Mac OS
+                // Assuming that SQL Server is installed on Windows
                 services.AddDbContext<ApplicationDbContext>(options =>
                    options.UseMySql(Configuration["ConnectionStrings:MySqlConnection"]));
             }
