@@ -15,5 +15,3 @@ This is the example code for CS295N, Web Development 1: ASP.NET
   A quiz class and quiz view were added. Unit tests for the quiz class and for two of the review methods were added.
 - 6-Database  
   A database and Entity Framework were added. The book review entered by the user is now stored in the database.
-- 7-RepositoryPattern  
-  The a ReviewRepository was added and the ReviewController was refactored to use it. A FakeReviewRepository was added and unit tests were written that use it.
