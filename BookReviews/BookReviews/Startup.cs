@@ -1,4 +1,5 @@
 using System.Runtime.InteropServices;
+using BookReviews.Data;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.EntityFrameworkCore;
@@ -33,6 +34,7 @@ namespace BookReviews
                 services.AddDbContext<ApplicationDbContext>(options =>
                     options.UseSqlite(Configuration["ConnectionStrings:SQLiteConnection"]));
             }
+            services.AddTransient<IReviewRepository, ReviewRepository>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

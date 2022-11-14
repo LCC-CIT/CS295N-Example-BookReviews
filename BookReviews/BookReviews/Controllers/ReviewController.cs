@@ -1,4 +1,5 @@
-﻿using BookReviews.Models;
+﻿using BookReviews.Data;
+using BookReviews.Models;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using System;
@@ -10,14 +11,18 @@ namespace BookReviews.Controllers
     public class ReviewController : Controller
     {
         ApplicationDbContext context;
-        public ReviewController(ApplicationDbContext c)
+        IReviewRepository repo;
+        public ReviewController(ApplicationDbContext c, IReviewRepository r)
         {
             context = c;
+            repo = r;
         }
 
         // Can be called with or without a reviewId on the incoming http request
         public IActionResult Index(int reviewId) 
         {
+            Review review = repo.GetReviewById(reviewId);
+            /*
             // If the http request doesn't have a reviewId, then reviewId = 0.
             var review = context.Reviews
                 .Include(review => review.Reviewer) // returns Reivew.AppUser object
@@ -25,6 +30,7 @@ namespace BookReviews.Controllers
                 .Where(review => review.ReviewId == reviewId)
                 .SingleOrDefault();  // default is null
             // If no review is found, a null is sent to the view.
+            */
             return View(review);
         }
 
