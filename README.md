@@ -19,5 +19,5 @@ This is the example code for CS295N, Web Development 1: ASP.NET
   The a ReviewRepository was added and the ReviewController was refactored to use it. A FakeReviewRepository was added and unit tests were written that use it.
 - 8-Linq+SeeData  
   Examples of Linq queries for filtering and searching are added. Seed data is added using a simpler method than the one shown on branch 9. This is the instructor's preferred method of adding seed data.
-- 9-SeedData
+- 9-SeedData  
   Code to seed the database was added using the ModelBuilder. This is the approach used in Murach's ASP.NET Core MVC.
