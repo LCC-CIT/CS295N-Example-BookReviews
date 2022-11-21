@@ -2,6 +2,7 @@
 using BookReviews.Models;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Text;
 using static System.Reflection.Metadata.BlobBuilder;
 
@@ -10,6 +11,8 @@ namespace BookReviewTests
     public class FakeReviewRepository : IReviewRepository
     {
         private List<Review> reviews = new List<Review>();
+
+        IQueryable<Review> IReviewRepository.Reviews => throw new NotImplementedException();
 
         public Review GetReviewById(int id)
         {
@@ -28,6 +31,16 @@ namespace BookReviewTests
                 status = 1;    
             }
             return status;
+        }
+
+        Review IReviewRepository.GetReviewById(int id)
+        {
+            throw new NotImplementedException();
+        }
+
+        int IReviewRepository.StoreReview(Review model)
+        {
+            throw new NotImplementedException();
         }
     }
 }

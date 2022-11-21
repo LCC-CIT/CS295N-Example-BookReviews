@@ -19,8 +19,10 @@ namespace BookReviews.Controllers
         // Can be called with or without a reviewId on the incoming http request
         public IActionResult Index(int reviewId) 
         {
-            Review review = repo.GetReviewById(reviewId);
-            return View(review);
+           // Review review = repo.GetReviewById(reviewId);
+           // We will use this again once we have filtering in the view
+           var reviews = repo.Reviews.ToList<Review>();
+           return View(reviews);
         }
 
 

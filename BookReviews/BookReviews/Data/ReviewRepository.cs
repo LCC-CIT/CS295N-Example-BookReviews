@@ -14,6 +14,17 @@ namespace BookReviews.Data
             context = appDbContext;
         }
 
+        public IQueryable<Review> Reviews
+        {
+            get
+            {
+                // Get all the Review objects in the Reviews DbSet
+                // and include the Reivewer object in each Review.
+                return context.Reviews.Include(review => review.Reviewer)
+                .Include(review => review.Book);
+            }
+        }
+
         public Review GetReviewById(int id)
         {
             var review = context.Reviews

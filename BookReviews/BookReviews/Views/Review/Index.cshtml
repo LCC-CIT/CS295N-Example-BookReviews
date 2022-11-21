@@ -1,25 +1,26 @@
-﻿@model Review
+﻿@model List<Review>
 @{
     ViewData["Title"] = "Reviews";
 }
 
 <div class="text-center">
     <h1 class="display-4">Reviews</h1>
-    <p>
-        All the reviews users have posted.<br />
-        ... coming soon.
-    </p>
-    @if(@Model != null)
+    @foreach (Review review in Model)
     {
         <p>
-            <h2>The Last Review Posted</h2>
-            Book Title: @Model.Book.BookTitle<br />
-            Author: @Model.Book.AuthorName<br />
-            Review: @Model.ReviewText<br />
-            Reviewer: @Model.Reviewer.UserName<br />
-            Review date: @Model.ReviewDate.ToShortDateString()
-         </p>
+            <strong class="m-3">Title:</strong>
+            @review.Book.BookTitle<br />
+            <strong class="m-3">Author:</strong>
+            @review.Book.AuthorName<br />
+            <strong class="m-3">Reviewer:</strong>
+            @review.Reviewer.UserName<br />
+            <strong class="m-3">Review Date:</strong>
+            @review.ReviewDate.Date<br />
+            <strong class="m-3">Review:</strong>
+            @review.ReviewText<br />
+        </p>
     }
+
     <a href="/Review/Review">Add a Review</a><br />
     <a href="/Home">Home</a>
 </div>
