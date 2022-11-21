@@ -10,11 +10,9 @@ namespace BookReviews.Controllers
 {
     public class ReviewController : Controller
     {
-        ApplicationDbContext context;
         IReviewRepository repo;
-        public ReviewController(ApplicationDbContext c, IReviewRepository r)
+        public ReviewController(IReviewRepository r)
         {
-            context = c;
             repo = r;
         }
 
@@ -22,15 +20,6 @@ namespace BookReviews.Controllers
         public IActionResult Index(int reviewId) 
         {
             Review review = repo.GetReviewById(reviewId);
-            /*
-            // If the http request doesn't have a reviewId, then reviewId = 0.
-            var review = context.Reviews
-                .Include(review => review.Reviewer) // returns Reivew.AppUser object
-                .Include(review => review.Book) // returns Review.Book object
-                .Where(review => review.ReviewId == reviewId)
-                .SingleOrDefault();  // default is null
-            // If no review is found, a null is sent to the view.
-            */
             return View(review);
         }
 
@@ -43,10 +32,14 @@ namespace BookReviews.Controllers
         [HttpPost]
         public IActionResult Review(Review model)
         {
-            model.ReviewDate = DateTime.Now;
-            context.Reviews.Add(model);
-            context.SaveChanges(); 
-            return RedirectToAction("Index",new {reviewId = model.ReviewId});
+            if (repo.StoreReview(model) > 0)
+            {
+                return RedirectToAction("Index", new { reviewId = model.ReviewId });
+            }
+            else
+            {
+                return View();  // TODO: Send an error message to the view
+            }
         }
     }
 }

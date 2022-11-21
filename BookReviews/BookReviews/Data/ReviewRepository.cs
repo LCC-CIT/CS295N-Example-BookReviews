@@ -23,5 +23,13 @@ namespace BookReviews.Data
               .SingleOrDefault();
             return review;
         }
+
+        public int StoreReview(Review model)
+        {
+            model.ReviewDate = DateTime.Now;
+            context.Reviews.Add(model);
+            return context.SaveChanges();
+            // returns a positive value if succussful
+        }
     }
 }

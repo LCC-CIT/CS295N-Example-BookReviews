@@ -1,4 +1,5 @@
 using BookReviews.Controllers;
+using BookReviews.Data;
 using BookReviews.Models;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Routing;
@@ -9,13 +10,21 @@ namespace BookReviewTests
 {
     public class ReviewControllerTests
     {
-        /* TODO: Fix these unit tests
-        ReviewController controller = new ReviewController();
+        IReviewRepository repo = new FakeReviewRepository();
+        ReviewController controller;
+        /* Not needed now
         const string TITLE = "The Title";
         const string REVIEW_TEXT = "Not a real book";
         const string AUTHOR = "Anne Author";
         const string REVIEWER = "I. M. Me";
+        */
 
+        public ReviewControllerTests()
+        {
+           controller = new ReviewController(repo);
+        }
+
+        /*
         [Fact]
         public void IndexTest()
         {
@@ -39,34 +48,35 @@ namespace BookReviewTests
             Assert.Equal(REVIEWER, model.Reviewer.UserName);
             Assert.Equal(dateTime, model.ReviewDate);
         }
+        */
 
         [Fact]
-        public void Review_PostTest()
+        public void Review_PostTest_Success()
         {
             // arrange
-
-            Review model = new Review
-            {
-                Book = new Book { BookTitle = TITLE, AuthorName = AUTHOR },
-                ReviewText = REVIEW_TEXT,
-                Reviewer = new AppUser { UserName = REVIEWER }
-            };
-            // The ReviewDate property will be set by the Review method.
+            // Done in the constructor
 
             // act
-            var redirectResult = (RedirectToActionResult)controller.Review(model);
-            var routeValueDict = (RouteValueDictionary)redirectResult.RouteValues;
+            var result = controller.Review(new Review());
 
             // assert
-            // Keys to the RouteValueDictionary come from the properties of the
-            // routeValues Object passed to the RedirectToAction method in the method
-            // being tested.
-            Assert.Equal(TITLE, routeValueDict["bookTitle"]);
-            Assert.Equal(REVIEW_TEXT, routeValueDict["reviewText"]);
-            Assert.Equal(AUTHOR, routeValueDict["authorName"]);
-            Assert.Equal(REVIEWER, routeValueDict["reviewerName"]);
-            Assert.Equal(DateTime.Now.Date, ((DateTime)routeValueDict["date"]).Date);
+            // Check to see if I got a RedirectToActionResult
+            Assert.True(result.GetType() == typeof(RedirectToActionResult));
         }
-        */
+
+        [Fact]
+        public void Review_PostTest_Failure()
+        {
+            // arrange
+            // Done in the constructor
+
+            // act
+            var result = controller.Review(null);
+
+            // assert
+            // Check to see if I got a RedirectToActionResult
+            Assert.True(result.GetType() == typeof(ViewResult));
+        }
+
     }
 }
