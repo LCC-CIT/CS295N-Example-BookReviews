@@ -16,13 +16,35 @@ namespace BookReviews.Controllers
             repo = r;
         }
 
-        // Can be called with or without a reviewId on the incoming http request
-        public IActionResult Index(int reviewId) 
+        public IActionResult Index(string ReviewerName, string BookTitle) 
         {
-           // Review review = repo.GetReviewById(reviewId);
-           // We will use this again once we have filtering in the view
-           var reviews = repo.Reviews.ToList<Review>();
-           return View(reviews);
+            List<Review> reviews;
+
+            // ReviewerName is not null
+            if (ReviewerName != null)
+            {
+                reviews = (
+                    from r in repo.Reviews
+                    where r.Reviewer.UserName == ReviewerName
+                    select r
+                    ).ToList<Review>();
+            }
+            // BookTitle is not null
+            else if (BookTitle != null)
+            {
+                reviews = (
+                    from r in repo.Reviews
+                    where r.Book.BookTitle == BookTitle
+                    select r
+                    ).ToList<Review>();
+            }
+            // Both query parameters are null
+            else
+            {
+                reviews = repo.Reviews.ToList<Review>();
+            }
+
+            return View(reviews);
         }
 
 
