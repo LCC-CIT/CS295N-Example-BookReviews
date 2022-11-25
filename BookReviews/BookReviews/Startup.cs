@@ -55,6 +55,7 @@ namespace BookReviews
 
             app.UseRouting();
 
+            // UseAuthorization is used but AddAuthorization is not called. This should throw an error. How is this mitigated?
             app.UseAuthorization();
 
             app.UseEndpoints(endpoints =>
