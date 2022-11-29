@@ -24,15 +24,15 @@ namespace BookReviews
             services.AddControllersWithViews();
             if (RuntimeInformation.IsOSPlatform(OSPlatform.Windows))
             {
-                // Assuming that SQL Server is installed on Windows
+                // Assuming that SQL Server (LocalDb) is installed on Windows
                 services.AddDbContext<ApplicationDbContext>(options =>
                    options.UseSqlServer(Configuration["ConnectionStrings:SQLServerConnection"]));
             }
             else
             {
-                // Assuming SQLite is installed on all other operating systems
+                // Assuming MySQL is installed on all other operating systems
                 services.AddDbContext<ApplicationDbContext>(options =>
-                    options.UseSqlite(Configuration["ConnectionStrings:SQLiteConnection"]));
+                    options.UseMySql(Configuration["ConnectionStrings:MySQLConnection"]));
             }
             services.AddTransient<IReviewRepository, ReviewRepository>();
         }
