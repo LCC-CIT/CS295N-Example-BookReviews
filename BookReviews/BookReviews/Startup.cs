@@ -29,7 +29,7 @@ namespace BookReviews
             }
             else if (RuntimeInformation.IsOSPlatform(OSPlatform.OSX))
             {
-                // Assuming that SQL Server is installed on Windows
+                // Assuming that MySQL is installed on MacOS
                 services.AddDbContext<ApplicationDbContext>(options =>
                    options.UseMySql(Configuration["ConnectionStrings:MySqlConnection"]));
             }
