@@ -30,9 +30,9 @@ namespace BookReviews
             }
             else
             {
-                // Assuming SQLite is installed on all other operating systems
+                // Assuming MySQL is installed on all other operating systems
                 services.AddDbContext<ApplicationDbContext>(options =>
-                    options.UseSqlite(Configuration["ConnectionStrings:SQLiteConnection"]));
+                    options.UseMySql(Configuration["ConnectionStrings:MySQLConnection"]));
             }
             services.AddTransient<IReviewRepository, ReviewRepository>();
         }
