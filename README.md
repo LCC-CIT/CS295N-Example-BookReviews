@@ -16,5 +16,9 @@ This is the example code for CS295N, Web Development 1: ASP.NET
 - 6-Database  
   A database and Entity Framework were added. The book review entered by the user is now stored in the database.
 - 7-RepositoryPattern  
-  The a ReviewRepository was added and the ReviewController was refactored to use it. A FakeReviewRepository was added and unit tests were written that use it.
+  The ReviewRepository was added and the ReviewController was refactored to use it. A FakeReviewRepository was added and unit tests were written that use it.
+- 8A-SeedData  
+  Code to seed the database with some initial book reviews was added.
+- 8B-LinqFiltering  
+  Added code to filter reviews by book title or reviewer.
   
